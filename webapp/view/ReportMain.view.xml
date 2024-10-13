@@ -1,0 +1,72 @@
+<mvc:View 
+	controllerName="ns.asa.zappreportinflacionres.controller.ReportMain"
+	xmlns="sap.m" 
+	xmlns:core="sap.ui.core" 
+	xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	xmlns:f="sap.f"
+	xmlns:footerbar="sap.ushell.ui.footerbar"
+	xmlns:html="http://www.w3.org/1999/xhtml" 
+	xmlns:l="sap.ui.layout" 
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns:smartfilterbar="sap.ui.comp.smartfilterbar" 
+	xmlns:smartlink="sap.ui.comp.navpopover" 
+	xmlns:smarttable="sap.ui.comp.smarttable"
+	xmlns:table="sap.ui.table"
+	xmlns:unified="sap.ui.unified"
+	xmlns:variants="sap.ui.comp.smartvariants"
+	xmlns:plugins="sap.ui.table.plugins">
+
+	<f:DynamicPage id="zdisplayPage" busy="{appView>/busy}" busyIndicatorDelay="400" 
+		headerExpanded="{page>/headerExpanded}" preserveHeaderStateOnScroll="false" fitContent="true"
+		showFooter="false" >
+
+		<f:title>
+			<f:DynamicPageTitle id="zPageTitle">
+				<f:heading>
+					<variants:SmartVariantManagement id="zPageVariant" showExecuteOnSelection="true" showShare="true"/>
+				</f:heading>
+			</f:DynamicPageTitle>
+		</f:title>
+
+        <f:header>
+            <f:DynamicPageHeader id="fin.ap.lineitems.display.PageHeader" pinnable="false">
+            <f:content>
+            		<smartfilterbar:SmartFilterBar
+						id="fin.ap.lineitems.display.SmartFilterBar" entitySet="Items"
+						search="cmd:Enter" reset="onReset" initialise="onInitSmartFilterBar"
+						beforeVariantSave="onBeforeVariantSave" afterVariantLoad="onAfterVariantLoad"
+						persistencyKey="fin.ap.lineitems.display.view.S1"
+						smartVariant="fin.ap.lineitems.display.PageVariant" useToolbar="false" assignedFiltersChanged="onAssignedFiltersChanged"
+						useDateRangeType="true">
+
+                    <smartfilterbar:controlConfiguration>
+                    <smartfilterbar:ControlConfiguration
+								id="fin.ap.lineitems.display.SelectClearingStatus" key="CustomClearingStatus"
+								label="{i18nLib>LABEL_CLEARINGSTATUS}" controlType="dropDownList"
+								index="2" groupId="_BASIC" mandatory="mandatory">
+								<smartfilterbar:customControl>
+									<Select id="fin.ap.lineitems.display.CustomSelectClearingStatus"
+										selectedKey="O" change="onClearingStatusChange"
+										ariaLabelledBy="fin.ap.lineitems.display.InvisibleText.ClearingStatus">
+										<core:Item id="fin.ap.lineitems.display.ClearingStatusOpen"
+											key="O" text="{i18nLib>SELECT_CLEARINGSTATUS_OPEN}" />
+										<core:Item id="fin.ap.lineitems.display.ClearingStatusCleared"
+											key="C" text="{i18nLib>SELECT_CLEARINGSTATUS_CLEARED}" />
+										<core:Item id="fin.ap.lineitems.display.ClearingStatusAll"
+											key="A" text="{i18nLib>SELECT_CLEARINGSTATUS_ALL}" />
+									</Select>
+								</smartfilterbar:customControl>
+							</smartfilterbar:ControlConfiguration>
+
+                    </smartfilterbar:controlConfiguration>
+
+                    </smartfilterbar:SmartFilterBar>
+            </f:content>
+			</f:DynamicPageHeader>
+        </f:header>
+        <f:content>
+        
+        </f:content>
+	</f:DynamicPage>
+
+</mvc:View>
